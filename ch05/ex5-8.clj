@@ -1,0 +1,29 @@
+;; momoize
+
+(+ 3 (+ 5 8))
+
+(+ 3 13)
+
+16
+
+
+
+(defn sleepy-identity
+  "Return the given value after 1 second"
+  [x]
+  (Thread/sleep 1000)
+  x)
+(sleepy-identity "Mr. Fantastico")
+; => "Mr. Fantastico" after 1 second
+
+(sleepy-identity "Mr. Fantastico")
+; => "Mr. Fantastico" after 1 second
+
+
+
+(def memo-sleepy-identity (memoize sleepy-identity))
+(memo-sleepy-identity "Mr. Fantastico")
+; => "Mr. Fantastico" after 1 second
+
+(memo-sleepy-identity "Mr. Fantastico")
+; => "Mr. Fantastico"
